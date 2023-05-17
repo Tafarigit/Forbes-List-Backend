@@ -10,6 +10,6 @@ CREATE TABLE gifts (
     quantity INTEGER CHECK (quantity>0 AND quantity <= 100),
     description TEXT NOT NULL, 
     is_favorite BOOLEAN NOT NULL DEFAULT FALSE,
-    is_wearable BOOLEAN NOT NULL DEFAULT FALSE,
+    is_wearable BOOLEAN NOT NULL DEFAULT FALSE
 
 );
