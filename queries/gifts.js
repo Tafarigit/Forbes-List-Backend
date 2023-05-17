@@ -2,7 +2,7 @@ const db = require("../db/dbConfig.js");
 
 const getAllGifts = async () => {
     try {
-        const allGifts = await db.any('SELECT * FROM swag');
+        const allGifts = await db.any('SELECT * FROM gifts');
         return allGifts;
     } catch (err) {
         return err;
@@ -22,7 +22,7 @@ const getGift = async (id) => {
 const createGifts = async (gift) => {
     try {
         const newGift = await db.one(
-            'INSERT INTO swag (name, brand, price, quantity, description, in_stock) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+            'INSERT INTO gifts (name, brand, price, quantity, description, in_stock) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
             [gift.name, gift.brand, gift.price, gift.quantity, gift.description, gift.is_favorite, gift.is_wearable]
         );
         return newGift;
