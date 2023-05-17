@@ -9,5 +9,7 @@ CREATE TABLE gifts (
     price DECIMAL(3, 2) CHECK (price>1000 AND price <= 100000),
     quantity INTEGER CHECK (quantity>0 AND quantity <= 100),
     description TEXT NOT NULL, 
-    in_stock BOOLEAN NOT NULL DEFAULT FALSE
+    is_favorite BOOLEAN NOT NULL DEFAULT FALSE,
+    is_wearable BOOLEAN NOT NULL DEFAULT FALSE,
+
 );
