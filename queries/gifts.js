@@ -11,7 +11,7 @@ const getAllGifts = async () => {
 
 const getGift = async (id) => {
     try {
-    const oneGift = await db.one('SELECT * FROM gift WHERE id=$1', id);
+    const oneGift = await db.one('SELECT * FROM gifts WHERE id=$1', id);
     return oneGift;
 } catch (error) {
     return { error: error };
@@ -22,7 +22,7 @@ const getGift = async (id) => {
 const createGifts = async (gift) => {
     try {
         const newGift = await db.one(
-            'INSERT INTO gifts (name, brand, price, quantity, description, in_stock) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+            'INSERT INTO gifts (name, brand, price, quantity, description, in_stock) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
             [gift.name, gift.brand, gift.price, gift.quantity, gift.description, gift.is_favorite, gift.is_wearable]
         );
         return newGift;
@@ -45,7 +45,7 @@ const deleteGifts = async(id) => {
 const updateGifts = async (id, gift) => {
     try {
         const updatedGift = await db.one(
-            'UPDATE gifts SET name=$1, brand=$2, price=$3, quantity=$4,description=$5,in_stock=$6 where id=$7 RETURNING *',
+            'UPDATE gifts SET name=$1, brand=$2, price=$3, quantity=$4,description=$5,is_favorite=$6, is_wearable=$7 where id=$8 RETURNING *',
             [gift.name, gift.brand, gift.price, gift.quantity, gift.description, gift.in_favorite, gift.is_wearable, id]
         );
         return updatedGift;
