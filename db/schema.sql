@@ -6,7 +6,7 @@ CREATE TABLE gifts (
     id SERIAL PRIMARY KEY, 
     name TEXT NOT NULL,
     brand TEXT NOT NULL,
-    price DECIMAL(8, 2) CHECK (price>1000 AND price <= 100000),
+    price DECIMAL(6, 2) CHECK (price>=1000 AND price <= 100000),
     quantity INTEGER CHECK (quantity>0 AND quantity <= 100),
     description TEXT NOT NULL, 
     is_favorite BOOLEAN NOT NULL DEFAULT FALSE,
