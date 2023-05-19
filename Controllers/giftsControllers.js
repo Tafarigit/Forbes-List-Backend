@@ -9,12 +9,12 @@ const {
   updateGifts,
 } = require("../queries/gifts.js");
 
-gifts.get("/", async (req, res) => {
+gifts.get("/", async (req, res)=> {
   const allGifts = await getAllGifts();
   res.send(allGifts);
 });
 
-gifts.get("/:id", async (req, res) => {
+gifts.get("/:id", async (req, res)=> {
     const { id } = req.params;
     const gift = await getGift(id); 
 
@@ -28,7 +28,7 @@ gifts.get("/:id", async (req, res) => {
     }
 })
 
-gifts.post("/", async (req, res) => {
+gifts.post("/", async (req, res)=> {
   try {
   const newGift = await createGifts(req.body);
   res.status(200).json(newGift);
@@ -39,17 +39,17 @@ catch (error) {
 }
 });  
 
-gifts.delete("/:id", async (req, res) => {
+gifts.delete("/:id", async (req, res)=> {
   const { id } = req.params;
   const deletedGift = await deleteGifts(id);
-  if (!deletedGift.id) {
-    res.status(404).json(deletedGift);
+  if (deletedGift.id) {
+    res.status(200).json(deletedGift);
   }else{
-  res.status(200).json(deletedGift);
+  res.status(404).json(deletedGift);
   }
 });
 
-gifts.put("/:id", async (req, res) => {
+gifts.put("/:id", async (req, res)=> {
   const { id } = req.params;
   const {name, brand, price, quantity, description, is_favorite, is_wearable} = req.body; 
   const updatedGift = await updateGifts(id, req.body);

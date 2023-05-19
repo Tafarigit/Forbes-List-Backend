@@ -46,8 +46,8 @@ const deleteGifts = async(id) => {
 const updateGifts = async (id, gift) => {
     try {
         const updatedGift = await db.one(
-            'UPDATE gifts SET name=$1, brand=$2, price=$3, quantity=$4,description=$5,is_favorite=$6, is_wearable=$7 where id=$8 RETURNING *',
-            [gift.name, gift.brand, gift.price, gift.quantity, gift.description, gift.in_favorite, gift.is_wearable, id]
+            'UPDATE gifts SET name=$1, brand=$2, price=$3, quantity=$4,description=$5, is_favorite=$6, is_wearable=$7 where id=$8 RETURNING *',
+            [gift.name, gift.brand, gift.price, gift.quantity, gift.description, gift.is_favorite, gift.is_wearable, id]
         );
         return updatedGift;
     } catch (error) {
