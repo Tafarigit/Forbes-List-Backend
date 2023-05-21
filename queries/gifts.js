@@ -21,7 +21,7 @@ const getGift = async (id) => {
 
 const createGifts = async (gift) => {
     try {
-        console.log(gift);
+        // console.log(gift);
         const newGift = await db.one(
             'INSERT INTO gifts (name, brand, price, quantity, description, is_favorite, is_wearable) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
             [gift.name, gift.brand, gift.price, gift.quantity, gift.description, gift.is_favorite, gift.is_wearable]
